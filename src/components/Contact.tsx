@@ -17,24 +17,47 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "4fad0702-2637-4842-adea-d0a9caff8d10");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for reaching out. I'll get back to you soon!",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        toast({
+          title: "Error sending message",
+          description: "Something went wrong. Please try again later or email me directly.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Network Error",
+        description: "Please check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "saanidhya@example.com",
-      href: "mailto:saanidhya@example.com",
+      value: "saanidhyachauhan35@gmail.com",
+      href: "mailto:saanidhyachauhan35@gmail.com",
     },
     {
       icon: MapPin,
@@ -72,7 +95,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -147,7 +169,7 @@ const Contact = () => {
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    <Send className="w-4 h-4" />
+                    <div className="w-4 h-4 text-primary-foreground" />
                     Send Message
                   </span>
                 )}
@@ -155,7 +177,6 @@ const Contact = () => {
             </form>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -193,7 +214,6 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* CTA Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
