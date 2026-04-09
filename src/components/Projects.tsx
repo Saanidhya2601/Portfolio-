@@ -10,7 +10,15 @@ const Projects = () => {
   const featuredProjects = [
     {
       title: "Time-Champ",
-      description: "A comprehensive productivity and time-tracking application designed to help users manage tasks efficiently. Features intuitive dashboards and real-time analytics.",
+      description: "Time-Champ: Reclaiming Focus in a Distracted World
+
+The Vision: Time-Champ is a comprehensive productivity suite engineered to help users break free from procrastination and manage complex workflows with precision. Recognizing that modern work often spans multiple projects and deadlines, I set out to build an application that bridges the gap between high-level planning and day-to-day execution.
+
+The Experience: At the core of the platform are highly intuitive, interactive dashboards designed for seamless task organization. Instead of rigid lists, users can interact with their data dynamically, categorizing tasks and setting priorities with zero friction.
+
+The Insights: To ensure users aren't just "busy" but actually productive, the app features a robust real-time analytics engine. It processes user activity to generate rich visual insights—highlighting time allocation, identifying productivity bottlenecks, and revealing long-term work trends.
+
+The Architecture: Built from the ground up with modern web technologies, the application prioritizes speed and responsiveness. By leveraging a modern React architecture, state management is handled efficiently, ensuring that interactions feel instantaneous and the user experience remains frictionless across all devices.",
       tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
       github: "https://github.com/Saanidhya2601", 
       live: "#",
